@@ -14,6 +14,11 @@
 		B63BF2D124D1331F003107F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B63BF2D024D1331F003107F7 /* Assets.xcassets */; };
 		B63BF2D424D1331F003107F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B63BF2D224D1331F003107F7 /* LaunchScreen.storyboard */; };
 		B63BF2DF24D1331F003107F7 /* PokemonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63BF2DE24D1331F003107F7 /* PokemonTests.swift */; };
+		B6786C6A24D1827C001DD3A2 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6786C6924D1827C001DD3A2 /* TableViewController.swift */; };
+		B6DF9A9724D16E9700975DC2 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DF9A9624D16E9700975DC2 /* Repository.swift */; };
+		B6DF9A9924D1704300975DC2 /* PokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DF9A9824D1704300975DC2 /* PokemonModel.swift */; };
+		B6DF9A9B24D171A400975DC2 /* Repositorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DF9A9A24D171A400975DC2 /* Repositorable.swift */; };
+		B6DF9AA224D17B7A00975DC2 /* endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DF9AA124D17B7A00975DC2 /* endpoints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +43,11 @@
 		B63BF2DA24D1331F003107F7 /* PokemonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokemonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63BF2DE24D1331F003107F7 /* PokemonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTests.swift; sourceTree = "<group>"; };
 		B63BF2E024D1331F003107F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6786C6924D1827C001DD3A2 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		B6DF9A9624D16E9700975DC2 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		B6DF9A9824D1704300975DC2 /* PokemonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonModel.swift; sourceTree = "<group>"; };
+		B6DF9A9A24D171A400975DC2 /* Repositorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repositorable.swift; sourceTree = "<group>"; };
+		B6DF9AA124D17B7A00975DC2 /* endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endpoints.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +89,8 @@
 		B63BF2C624D1331E003107F7 /* Pokemon */ = {
 			isa = PBXGroup;
 			children = (
+				B6786C6824D18261001DD3A2 /* UserInterface */,
+				B6DF9A9C24D17AF500975DC2 /* Service Layer */,
 				B63BF2C724D1331E003107F7 /* AppDelegate.swift */,
 				B63BF2C924D1331E003107F7 /* SceneDelegate.swift */,
 				B63BF2CB24D1331E003107F7 /* ViewController.swift */,
@@ -97,6 +109,57 @@
 				B63BF2E024D1331F003107F7 /* Info.plist */,
 			);
 			path = PokemonTests;
+			sourceTree = "<group>";
+		};
+		B6786C6824D18261001DD3A2 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				B6786C6924D1827C001DD3A2 /* TableViewController.swift */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		B6DF9A9C24D17AF500975DC2 /* Service Layer */ = {
+			isa = PBXGroup;
+			children = (
+				B6DF9AA024D17B6300975DC2 /* Endpoints */,
+				B6DF9A9F24D17B3300975DC2 /* Models */,
+				B6DF9A9E24D17B1900975DC2 /* Protocol */,
+				B6DF9A9D24D17B0D00975DC2 /* Repository */,
+			);
+			path = "Service Layer";
+			sourceTree = "<group>";
+		};
+		B6DF9A9D24D17B0D00975DC2 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				B6DF9A9624D16E9700975DC2 /* Repository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		B6DF9A9E24D17B1900975DC2 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				B6DF9A9A24D171A400975DC2 /* Repositorable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		B6DF9A9F24D17B3300975DC2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B6DF9A9824D1704300975DC2 /* PokemonModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B6DF9AA024D17B6300975DC2 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				B6DF9AA124D17B7A00975DC2 /* endpoints.swift */,
+			);
+			path = Endpoints;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +266,11 @@
 				B63BF2CC24D1331E003107F7 /* ViewController.swift in Sources */,
 				B63BF2C824D1331E003107F7 /* AppDelegate.swift in Sources */,
 				B63BF2CA24D1331E003107F7 /* SceneDelegate.swift in Sources */,
+				B6786C6A24D1827C001DD3A2 /* TableViewController.swift in Sources */,
+				B6DF9A9924D1704300975DC2 /* PokemonModel.swift in Sources */,
+				B6DF9AA224D17B7A00975DC2 /* endpoints.swift in Sources */,
+				B6DF9A9724D16E9700975DC2 /* Repository.swift in Sources */,
+				B6DF9A9B24D171A400975DC2 /* Repositorable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
