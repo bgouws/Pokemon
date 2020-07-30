@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct Pokemon: Codable {
+struct PokemonList: Codable {
     let count: Int
     let next: String
     let previous: String?
-    let results: [PokemonIndividual]
+    let results: [PokemonName]
 }
 
-struct PokemonIndividual: Codable {
+struct PokemonName: Codable {
     let name: String
     let url: String
 }
