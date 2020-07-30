@@ -12,7 +12,7 @@ let baseURL = "https://pokeapi.co/api/v2/pokemon"
 
 enum Endpoint: String {
     case name = "OtherEndPoints"
-    case basic = "?limit=151"
+    case basic = "?limit=20"
 }
 
 enum Method: String {

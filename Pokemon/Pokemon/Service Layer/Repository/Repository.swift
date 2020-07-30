@@ -13,9 +13,17 @@ class Repository: Repositorable {
         request(endpoint: .basic, method: .GET, completion: completion)
     }
     
-//    func getMainList(list: Pokemon,completion: @escaping ((Result<ActualPokemon, APIError>) -> Void)) {
-//        request(endpoint: list.results, method: .GET, completion: completion)
-//    }
+    func getSingle(endPoint: String, method: Method, completion: @escaping((Result<ActualPokemon, APIError>) -> Void)) {
+        guard let url = URL(string: endPoint) else {
+            completion(.failure(.internalError))
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "\(method)"
+        request.allHTTPHeaderFields = ["Content-Type": "application/json"]
+        
+        call(with: request, completion: completion)
+    }
     
     private func request<T: Codable>(endpoint: Endpoint, method: Method, completion: @escaping((Result<T, APIError>) -> Void)) {
         let path = "\(baseURL)\(endpoint.rawValue)"

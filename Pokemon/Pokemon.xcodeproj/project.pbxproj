@@ -14,6 +14,9 @@
 		B63BF2D124D1331F003107F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B63BF2D024D1331F003107F7 /* Assets.xcassets */; };
 		B63BF2D424D1331F003107F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B63BF2D224D1331F003107F7 /* LaunchScreen.storyboard */; };
 		B63BF2DF24D1331F003107F7 /* PokemonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63BF2DE24D1331F003107F7 /* PokemonTests.swift */; };
+		B66DACFF24D2FAD9004ABCDD /* SinglePokemonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DACFE24D2FAD9004ABCDD /* SinglePokemonViewController.swift */; };
+		B66DAD0124D30208004ABCDD /* PokemonCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DAD0024D30208004ABCDD /* PokemonCollectionViewController.swift */; };
+		B66DAD0324D30399004ABCDD /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66DAD0224D30399004ABCDD /* CollectionViewCell.swift */; };
 		B6786C6A24D1827C001DD3A2 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6786C6924D1827C001DD3A2 /* TableViewController.swift */; };
 		B6DF9A9724D16E9700975DC2 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DF9A9624D16E9700975DC2 /* Repository.swift */; };
 		B6DF9A9924D1704300975DC2 /* PokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DF9A9824D1704300975DC2 /* PokemonModel.swift */; };
@@ -43,6 +46,9 @@
 		B63BF2DA24D1331F003107F7 /* PokemonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokemonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63BF2DE24D1331F003107F7 /* PokemonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTests.swift; sourceTree = "<group>"; };
 		B63BF2E024D1331F003107F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B66DACFE24D2FAD9004ABCDD /* SinglePokemonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePokemonViewController.swift; sourceTree = "<group>"; };
+		B66DAD0024D30208004ABCDD /* PokemonCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewController.swift; sourceTree = "<group>"; };
+		B66DAD0224D30399004ABCDD /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		B6786C6924D1827C001DD3A2 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		B6DF9A9624D16E9700975DC2 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		B6DF9A9824D1704300975DC2 /* PokemonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonModel.swift; sourceTree = "<group>"; };
@@ -115,6 +121,9 @@
 			isa = PBXGroup;
 			children = (
 				B6786C6924D1827C001DD3A2 /* TableViewController.swift */,
+				B66DACFE24D2FAD9004ABCDD /* SinglePokemonViewController.swift */,
+				B66DAD0024D30208004ABCDD /* PokemonCollectionViewController.swift */,
+				B66DAD0224D30399004ABCDD /* CollectionViewCell.swift */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -265,12 +274,15 @@
 			files = (
 				B63BF2CC24D1331E003107F7 /* ViewController.swift in Sources */,
 				B63BF2C824D1331E003107F7 /* AppDelegate.swift in Sources */,
+				B66DAD0124D30208004ABCDD /* PokemonCollectionViewController.swift in Sources */,
 				B63BF2CA24D1331E003107F7 /* SceneDelegate.swift in Sources */,
 				B6786C6A24D1827C001DD3A2 /* TableViewController.swift in Sources */,
 				B6DF9A9924D1704300975DC2 /* PokemonModel.swift in Sources */,
 				B6DF9AA224D17B7A00975DC2 /* endpoints.swift in Sources */,
 				B6DF9A9724D16E9700975DC2 /* Repository.swift in Sources */,
 				B6DF9A9B24D171A400975DC2 /* Repositorable.swift in Sources */,
+				B66DACFF24D2FAD9004ABCDD /* SinglePokemonViewController.swift in Sources */,
+				B66DAD0324D30399004ABCDD /* CollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

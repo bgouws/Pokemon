@@ -27,4 +27,23 @@ class TableViewController: UITableViewController {
         cell.textLabel?.text = data[indexPath.row].name
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(data[indexPath.row])
+        let pokemanFactory = Repository()
+        pokemanFactory.getSingle(endPoint: data[indexPath.row].url, method: .GET) { result in
+            switch result {
+            case .success(let selected):
+                DispatchQueue.main.async {
+                    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let singlePokemonViewController = storyBoard.instantiateViewController(withIdentifier: "SinglePokemonView") as! SinglePokemonViewController
+                    singlePokemonViewController.data = selected
+                    self.navigationController?.pushViewController(singlePokemonViewController, animated: true)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+        print(indexPath.row)
+    }
 }

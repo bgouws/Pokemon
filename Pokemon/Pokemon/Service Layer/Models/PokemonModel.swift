@@ -23,9 +23,14 @@ struct PokemonIndividual: Codable {
 struct ActualPokemon: Codable {
     let id: Int
     let name: String
-    let sprites: [Sprites]
+    let base_experience: Int
+    let height: Int
+    let is_default: Bool
+    let order: Int
+    let weight: Int
+    let sprites: Sprites
 }
 
 struct Sprites: Codable {
-    let front_female: String
+    let front_default: String
 }
