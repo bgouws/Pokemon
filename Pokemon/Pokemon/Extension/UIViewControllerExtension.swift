@@ -9,11 +9,6 @@
 import UIKit
 
 extension UIViewController {
-//    func styleNavigationBar() {
-//        guard let navigationBar = self.navigationController?.navigationBar else { return }
-//        navigationBar.prefersLargeTitles = true
-//        navigationBar.backgroundColor = .systemRed
-//    }
     
     func showActionAlert(title: String, message: String, actions: [UIAlertAction], style: UIAlertController.Style) {
         let alert = UIAlertController(title: title,
@@ -44,6 +39,5 @@ extension UIViewController {
             navigationItem.searchController?.obscuresBackgroundDuringPresentation = false
             navigationItem.hidesSearchBarWhenScrolling = false
         }
-//        navigationItem.searchController?.hidesNavigationBarDuringPresentation = false
     }
 }
