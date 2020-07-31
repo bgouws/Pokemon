@@ -9,6 +9,6 @@
 import Foundation
 
 protocol PokedexRepositorable {
-    func getPokemonName(completion: @escaping((Result<PokemonList, APIError>) -> Void))
-    func getIndividualPokemon()
+    func getPokemonName(endpoint: String, completion: @escaping((Result<PokemonList, APIError>) -> Void))
+    func getIndividualPokemon(endpoint: String, method: Method, completion: @escaping((Result<IndividualPokemon, APIError>) -> Void))
 }

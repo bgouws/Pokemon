@@ -19,6 +19,10 @@ class PokedexViewController: BaseViewController {
     }
 }
 extension PokedexViewController: PokedexViewable {
+    func populateSinglePokemon(singlePokemon: [IndividualPokemon]) {
+        //
+    }
+    
     func populateData(pokemonList: PokemonList) {
         print(pokemonList)
         print("We Did It")
@@ -35,5 +39,4 @@ extension PokedexViewController: PokedexViewable {
     func stopLoadingIndicator() {
         // MARK: Handle Loading Here
     }
-    
 }
