@@ -15,9 +15,19 @@ class PokedexCollectionViewController: UICollectionViewController {
     var nextPage: String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadPokedex()
+        setUpNavigation()
+    }
+    
+    func loadPokedex() {
         viewModel.view = self
         viewModel.repo = PokedexRepository()
         viewModel.getPokemonList()
+    }
+    
+    func setUpNavigation() {
+        self.title = "Pokedex"
+        self.styleNavigationBar(searchbar: false)
     }
     
     func loadNextPage(url: String) {
@@ -60,7 +70,11 @@ extension PokedexCollectionViewController: PokedexViewable {
     }
     
     func displayError(error: APIError) {
-        
+        self.showActionAlert(title: "Error",
+                             message: error.localizedDescription,
+                             actions: [UIAlertAction(title: "Cancel",
+                                                     style: .cancel)],
+                             style: .alert)
     }
     
     func stopLoadingIndicator() {

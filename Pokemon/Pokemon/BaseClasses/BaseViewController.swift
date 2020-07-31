@@ -27,21 +27,4 @@ class BaseViewController: UIViewController {
         ])
         self.view.sendSubviewToBack(backgroundImage)
     }
-    
-    func showActionAlert(title: String, message: String, actions: [UIAlertAction], style: UIAlertController.Style) {
-        let alert = UIAlertController(title: title,
-                                      message: message,
-                                      preferredStyle: style)
-        for action in actions {
-            alert.addAction(action)
-        }
-        if let popoverController = alert.popoverPresentationController {
-            popoverController.sourceView = self.view
-            popoverController.sourceRect = CGRect(x: self.view.bounds.midX,
-                                                  y: self.view.bounds.midY,
-                                                  width: 0, height: 0)
-            popoverController.permittedArrowDirections = []
-        }
-        present(alert, animated: true)
-    }
 }
