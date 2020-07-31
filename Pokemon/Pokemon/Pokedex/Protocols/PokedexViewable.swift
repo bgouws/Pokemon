@@ -11,5 +11,6 @@ import Foundation
 protocol PokedexViewable: class {
     func populateData(pokemonList: PokemonList)
     func displayError(error: APIError)
-    func stopLoadingIndicator() 
+    func stopLoadingIndicator()
+    func populateSinglePokemon(singlePokemon: [IndividualPokemon])
 }

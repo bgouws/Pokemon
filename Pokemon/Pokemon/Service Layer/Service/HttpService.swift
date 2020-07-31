@@ -9,25 +9,16 @@
 import Foundation
 
 class HttpService: httpServiceType {
-    func getPokemonList(completion: @escaping ((Result<PokemonList, APIError>) -> Void)) {
-        request(endpoint: .basic, method: .GET, completion: completion)
+    func getPokemonList(endpoint: String, completion: @escaping ((Result<PokemonList, APIError>) -> Void)) {
+        request(endpoint: endpoint, method: .GET, completion: completion)
     }
     
-    func getSingle(endPoint: String, method: Method, completion: @escaping((Result<ActualPokemon, APIError>) -> Void)) {
-        guard let url = URL(string: endPoint) else {
-            completion(.failure(.internalError))
-            return
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "\(method)"
-        request.allHTTPHeaderFields = ["Content-Type": "application/json"]
-        
-        call(with: request, completion: completion)
+    func getSingle(endpoint: String, method: Method, completion: @escaping((Result<IndividualPokemon, APIError>) -> Void)) {
+        request(endpoint: endpoint, method: .GET, completion: completion)
     }
     
-    private func request<T: Codable>(endpoint: Endpoint, method: Method, completion: @escaping((Result<T, APIError>) -> Void)) {
-        let path = "\(baseURL)\(endpoint.rawValue)"
-        guard let url = URL(string: path) else {
+    private func request<T: Codable>(endpoint: String, method: Method, completion: @escaping((Result<T, APIError>) -> Void)) {
+        guard let url = URL(string: endpoint) else {
             completion(.failure(.internalError))
             return
         }

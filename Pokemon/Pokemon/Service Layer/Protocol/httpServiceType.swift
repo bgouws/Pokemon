@@ -15,5 +15,6 @@ enum APIError: Error {
 }
 
 protocol httpServiceType {
-    func getPokemonList(completion: @escaping((Result<PokemonList, APIError>) -> Void))
+    func getPokemonList(endpoint: String, completion: @escaping((Result<PokemonList, APIError>) -> Void))
+    func getSingle(endpoint: String, method: Method, completion: @escaping((Result<IndividualPokemon, APIError>) -> Void))
 }

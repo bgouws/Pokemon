@@ -11,9 +11,9 @@ import Foundation
 class PokedexRepository: PokedexRepositorable {
     var httpService: httpServiceType?
     
-    func getPokemonName(completion: @escaping ((Result<PokemonList, APIError>) -> Void)) {
+    func getPokemonName(endpoint: String, completion: @escaping ((Result<PokemonList, APIError>) -> Void)) {
         self.httpService = HttpService()
-        httpService?.getPokemonList(completion: { result in
+        httpService?.getPokemonList(endpoint: endpoint, completion: { result in
             switch result {
             case .success(let PokemonList):
                 completion(.success(PokemonList))
@@ -23,7 +23,15 @@ class PokedexRepository: PokedexRepositorable {
         })
     }
     
-    func getIndividualPokemon() {
-        
+    func getIndividualPokemon(endpoint: String, method: Method, completion: @escaping((Result<IndividualPokemon, APIError>) -> Void)) {
+        self.httpService = HttpService()
+        httpService?.getSingle(endpoint: endpoint, method: .GET, completion: { result in
+            switch result {
+            case .success(let singlePokemon):
+                completion(.success(singlePokemon))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        })
     }
 }
