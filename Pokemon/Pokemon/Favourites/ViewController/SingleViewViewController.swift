@@ -22,12 +22,11 @@ class SingleViewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if searching == nil {
-            populateFields()
-        } else {
+        if self.searching != nil {
             getPokemon()
+        } else {
+            populateFields()
         }
-        
     }
     
     func getPokemon() {
@@ -36,13 +35,6 @@ class SingleViewViewController: UIViewController {
         guard let url = pokemonURL else { return }
         viewModel.getSinglePokemon(url: url)
     }
-    
-    private func getSelectedPokemon() {
-        self.singlePokemon = viewModel.getPokemon()
-        populateFields()
-    }
-    
-    
     
     func populateFields() {
         guard let singlePokemon = self.singlePokemon else {return}
@@ -59,15 +51,9 @@ class SingleViewViewController: UIViewController {
 extension SingleViewViewController: SingleViewable {
     func populateData(pokemon: Pokemon) {
         self.singlePokemon = pokemon
-        self.populateFields()
-    }
-    
-    func stopLoadingIndicator() {
-        //
-    }
-    
-    func dataReady() {
-//        self.getSelectedPokemon()
+        DispatchQueue.main.async {
+            self.populateFields()
+        }
     }
     
     func display(error: APIError) {

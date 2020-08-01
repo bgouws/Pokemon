@@ -13,7 +13,6 @@ extension UIImageView {
     func downloadImage(from url: URL) {
         getData(from: url) { data, response, error in
             guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
             DispatchQueue.main.async() {
                 self.image = UIImage(data: data)
             }
@@ -22,5 +21,13 @@ extension UIImageView {
     
     private func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    
+    func stylePokemonImage() {
+        backgroundColor = .white
+        layer.cornerRadius = 8.0
+        layer.borderColor = UIColor.lightGray.cgColor
+        layer.borderWidth = 0.4
+        clipsToBounds = true
     }
 }

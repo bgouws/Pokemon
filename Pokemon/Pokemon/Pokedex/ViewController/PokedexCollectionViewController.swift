@@ -58,12 +58,13 @@ class PokedexCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let singlePokemonList = self.singlePokemonList else { return } // Move to seperate function 
+        guard let singlePokemonList = self.singlePokemonList else { return } // Move to seperate function
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let singleViewViewController = storyBoard.instantiateViewController(withIdentifier: "SingleView") as! SingleViewViewController
         singleViewViewController.singlePokemon = singlePokemonList[indexPath.row]
         self.navigationController?.pushViewController(singleViewViewController, animated: true)
     }
+    
 }
 
 extension PokedexCollectionViewController: PokedexViewable {
