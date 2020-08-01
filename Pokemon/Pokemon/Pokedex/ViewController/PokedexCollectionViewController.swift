@@ -22,7 +22,7 @@ class PokedexCollectionViewController: UICollectionViewController {
     func loadPokedex() {
         viewModel.view = self
         viewModel.repo = PokedexRepository()
-//        viewModel.getPokemonList()
+        viewModel.getPokemonList()
     }
     
     func setUpNavigation() {
