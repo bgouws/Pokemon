@@ -25,7 +25,7 @@ class SearchViewController: UIViewController {
         viewModel.getList()
     }
     
-    func createTableView() { //Naming
+    func createTableView() {
         self.view.addSubview(self.tableView)
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
@@ -87,6 +87,14 @@ extension SearchViewController: SearchViewable {
     func stopLoadingIndicator() {
         //
     }
+    
+    private func moveToSingleView(index: Int) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let singleViewViewController = storyBoard.instantiateViewController(withIdentifier: "SingleView") as! SingleViewViewController
+        singleViewViewController.searching = true
+        singleViewViewController.pokemonURL = pokemonList[index].url
+        self.navigationController?.pushViewController(singleViewViewController, animated: true)
+    }
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -101,5 +109,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         return cell!
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        moveToSingleView(index: indexPath.row)
+    }
 }

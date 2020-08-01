@@ -27,7 +27,7 @@ class PokedexViewModel {
     
     private func getSinglePokemonList(pokemonList: PokemonResponse) {
         let group = DispatchGroup()
-        for pokemon in 0...pokemonList.results.count - 1 { //Fix //Background thread
+        for pokemon in 0...pokemonList.results.count - 1 { 
             group.enter()
             repo?.getIndividualPokemon(endpoint: pokemonList.results[pokemon].url, method: .GET, completion: { result in
                 switch result {
