@@ -9,9 +9,9 @@
 import UIKit
 
 class PokedexCollectionViewController: UICollectionViewController {
-    let viewModel = PokedexViewModel()
+    private lazy var viewModel = PokedexViewModel()
     var pokemonList: [PokemonName]?
-    var singlePokemonList: [IndividualPokemon]?
+    var singlePokemonList: [Pokemon]?
     var nextPage: String?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class PokedexCollectionViewController: UICollectionViewController {
         self.styleNavigationBar(searchbar: false)
     }
     
-    func loadNextPage(url: String) {
+    func loadNextPage(url: String) {  
         viewModel.getPokemonList(url: url)
     }
 
@@ -58,7 +58,7 @@ class PokedexCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let singlePokemonList = self.singlePokemonList else { return }
+        guard let singlePokemonList = self.singlePokemonList else { return } // Move to seperate function 
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let singleViewViewController = storyBoard.instantiateViewController(withIdentifier: "SingleView") as! SingleViewViewController
         singleViewViewController.singlePokemon = singlePokemonList[indexPath.row]
@@ -67,12 +67,12 @@ class PokedexCollectionViewController: UICollectionViewController {
 }
 
 extension PokedexCollectionViewController: PokedexViewable {
-    func populateSinglePokemon(singlePokemon: [IndividualPokemon]) {
+    func populateSinglePokemon(singlePokemon: [Pokemon]) {
         self.singlePokemonList = singlePokemon
         self.collectionView.reloadData()
     }
     
-    func populateData(pokemonList: PokemonList) {
+    func populateData(pokemonList: PokemonResponse) {
         self.pokemonList = pokemonList.results
         self.nextPage = pokemonList.next
     }

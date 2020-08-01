@@ -9,11 +9,11 @@
 import Foundation
 
 class HttpService: httpServiceType {
-    func getPokemonList(endpoint: String, completion: @escaping ((Result<PokemonList, APIError>) -> Void)) {
+    func getPokemonList(endpoint: String, completion: @escaping ((Result<PokemonResponse, APIError>) -> Void)) {
         request(endpoint: endpoint, method: .GET, completion: completion)
     }
     
-    func getSingle(endpoint: String, method: Method, completion: @escaping((Result<IndividualPokemon, APIError>) -> Void)) {
+    func getSingle(endpoint: String, method: Method, completion: @escaping((Result<Pokemon, APIError>) -> Void)) {
         request(endpoint: endpoint, method: .GET, completion: completion)
     }
     

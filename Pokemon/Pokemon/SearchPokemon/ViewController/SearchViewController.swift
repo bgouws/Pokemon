@@ -72,7 +72,7 @@ extension SearchViewController: SearchViewable {
         self.tableView.reloadData()
     }
     
-    func populateData(pokemonList: PokemonList) {
+    func populateData(pokemonList: PokemonResponse) {
         self.pokemonList = pokemonList.results
     }
     
@@ -86,6 +86,14 @@ extension SearchViewController: SearchViewable {
     
     func stopLoadingIndicator() {
         //
+    }
+    
+    private func moveToSingleView(index: Int) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let singleViewViewController = storyBoard.instantiateViewController(withIdentifier: "SingleView") as! SingleViewViewController
+        singleViewViewController.searching = true
+        singleViewViewController.pokemonURL = pokemonList[index].url
+        self.navigationController?.pushViewController(singleViewViewController, animated: true)
     }
 }
 
@@ -101,5 +109,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         return cell!
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        moveToSingleView(index: indexPath.row)
+    }
 }

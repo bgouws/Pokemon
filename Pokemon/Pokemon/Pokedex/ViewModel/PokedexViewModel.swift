@@ -11,7 +11,7 @@ import Foundation
 class PokedexViewModel {
     public weak var view: PokedexViewable?
     public var repo: PokedexRepositorable?
-    var singlePokemon = [IndividualPokemon]()
+    var singlePokemon = [Pokemon]()
 
     func getPokemonList(url: String = baseURL) {
         repo?.getPokemonName(endpoint: url, completion: { result in
@@ -25,9 +25,9 @@ class PokedexViewModel {
         })
     }
     
-    private func getSinglePokemonList(pokemonList: PokemonList) {
+    private func getSinglePokemonList(pokemonList: PokemonResponse) {
         let group = DispatchGroup()
-        for pokemon in 0...pokemonList.results.count - 1 {
+        for pokemon in 0...pokemonList.results.count - 1 { 
             group.enter()
             repo?.getIndividualPokemon(endpoint: pokemonList.results[pokemon].url, method: .GET, completion: { result in
                 switch result {
