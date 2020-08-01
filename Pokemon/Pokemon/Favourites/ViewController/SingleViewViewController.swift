@@ -9,7 +9,7 @@
 import UIKit
 
 class SingleViewViewController: UIViewController {
-    var singlePokemon: IndividualPokemon?
+    var singlePokemon: Pokemon?
     var searching: Bool?
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var lblName: UILabel!

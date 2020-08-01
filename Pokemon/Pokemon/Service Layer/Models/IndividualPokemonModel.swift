@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct IndividualPokemon: Codable {
+struct Pokemon: Codable {
     let id: Int
     let name: String
     let base_experience: Int

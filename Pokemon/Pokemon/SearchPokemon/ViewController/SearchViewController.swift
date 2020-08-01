@@ -25,7 +25,7 @@ class SearchViewController: UIViewController {
         viewModel.getList()
     }
     
-    func createTableView() {
+    func createTableView() { //Naming
         self.view.addSubview(self.tableView)
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
@@ -72,7 +72,7 @@ extension SearchViewController: SearchViewable {
         self.tableView.reloadData()
     }
     
-    func populateData(pokemonList: PokemonList) {
+    func populateData(pokemonList: PokemonResponse) {
         self.pokemonList = pokemonList.results
     }
     
