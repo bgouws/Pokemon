@@ -15,5 +15,11 @@ class CollectionViewCell: UICollectionViewCell {
         self.lblName.text = pokemon.name
         guard let urlImage = URL(string: pokemon.sprites.front_default) else { return }
         imgView.downloadImage(from: urlImage)
+        styleCell()
+    }
+    
+    func styleCell() {
+        self.stylePokemonCell()
+        imgView.stylePokemonImage()
     }
 }

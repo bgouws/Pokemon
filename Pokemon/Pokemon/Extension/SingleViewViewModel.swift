@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SingleViewViewModel {
+class SingleViewViewModel: SingleViewModelable {
     public weak var view: SingleViewable?
     public var repo: Repositorable?
     var pokemon: Pokemon?
@@ -23,9 +23,5 @@ class SingleViewViewModel {
                 self.view?.display(error: error)
             }
         })
-    }
-    
-    func getPokemon() -> Pokemon? {
-        return self.pokemon
     }
 }

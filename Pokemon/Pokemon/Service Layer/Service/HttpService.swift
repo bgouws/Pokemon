@@ -26,7 +26,6 @@ class HttpService: httpServiceType {
         var request = URLRequest(url: url)
         request.httpMethod = "\(method)"
         request.allHTTPHeaderFields = ["Content-Type": "application/json"]
-        
         call(with: request, completion: completion)
     }
     

@@ -1,5 +1,5 @@
 //
-//  SingleViewable.swift
+//  SingleViewModelable.swift
 //  Pokemon
 //
 //  Created by Brandon Gouws on 2020/08/01.
@@ -8,7 +8,6 @@
 
 import Foundation
 
-protocol SingleViewable: class {
-    func populateData(pokemon: Pokemon)
-    func display(error: APIError)
+protocol SingleViewModelable: class {
+    func getSinglePokemon(url: String)
 }
