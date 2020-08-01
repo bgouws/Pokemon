@@ -21,7 +21,7 @@ class SearchViewController: UIViewController {
     
     func loadSearchList() {
         viewModel.view = self
-        viewModel.repo = PokedexRepository()
+        viewModel.repo = Repository()
         viewModel.getList()
     }
     

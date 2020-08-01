@@ -10,11 +10,11 @@ import Foundation
 
 class SingleViewViewModel {
     public weak var view: SingleViewable?
-    public var repo: PokedexRepositorable?
+    public var repo: Repositorable?
     var pokemon: Pokemon?
     
     func getSinglePokemon(url: String) {
-        repo?.getIndividualPokemon(endpoint: url, method: .GET, completion: { result in
+        repo?.getSinglePokemon(endpoint: url, method: .GET, completion: { result in
             switch result {
             case .success(let pokemon):
                 self.pokemon = pokemon

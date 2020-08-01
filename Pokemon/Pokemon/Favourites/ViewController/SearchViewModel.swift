@@ -10,12 +10,12 @@ import Foundation
 
 class searchViewModel {
     public weak var view: SearchViewable?
-    public var repo: PokedexRepositorable?
+    public var repo: Repositorable?
     var pokemonList: [PokemonName] = []
     var filteredPokemon: [PokemonName] = []
     
     func getList(url: String = Endpoint.all.rawValue) {
-        repo?.getPokemonName(endpoint: url, completion: { result in
+        repo?.getPokemon(endpoint: url, completion: { result in
             switch result {
             case .success(let pokemonList):
                 self.pokemonList = pokemonList.results
