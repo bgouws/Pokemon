@@ -18,7 +18,7 @@ class SingleViewViewModel {
             switch result {
             case .success(let pokemon):
                 self.pokemon = pokemon
-                self.view?.dataReady()
+                self.view?.populateData(pokemon: pokemon)
             case .failure(let error):
                 self.view?.display(error: error)
             }
@@ -26,10 +26,6 @@ class SingleViewViewModel {
     }
     
     func getPokemon() -> Pokemon? {
-        guard let pokemon = self.pokemon else {
-            view?.display(error: .internalError)
-            return nil
-        }
-        return pokemon
+        return self.pokemon
     }
 }

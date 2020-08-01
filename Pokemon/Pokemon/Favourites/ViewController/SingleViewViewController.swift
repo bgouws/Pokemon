@@ -45,26 +45,29 @@ class SingleViewViewController: UIViewController {
     
     
     func populateFields() {
-        DispatchQueue.main.async {
-            guard let singlePokemon = self.singlePokemon else {return}
-            guard let url = URL(string: singlePokemon.sprites.front_default) else { return }
-            self.imgView.downloadImage(from: url)
-            self.title = singlePokemon.name
-            self.lblName.text = "Name: \(singlePokemon.name)"
-            self.lblBaseExperience.text = "Base Experience: \(singlePokemon.base_experience)"
-            self.lblHeight.text = "Height: \(singlePokemon.height)"
-            self.lblWeight.text = "Weight: \(singlePokemon.weight)"
-        }
+        guard let singlePokemon = self.singlePokemon else {return}
+        guard let url = URL(string: singlePokemon.sprites.front_default) else { return }
+        self.title = singlePokemon.name
+        self.lblName.text = "Name: \(singlePokemon.name)"
+        self.lblBaseExperience.text = "Base Experience: \(singlePokemon.base_experience)"
+        self.lblHeight.text = "Height: \(singlePokemon.height)"
+        self.lblWeight.text = "Weight: \(singlePokemon.weight)"
+        self.imgView.downloadImage(from: url)
     }
 }
 
 extension SingleViewViewController: SingleViewable {
+    func populateData(pokemon: Pokemon) {
+        self.singlePokemon = pokemon
+        self.populateFields()
+    }
+    
     func stopLoadingIndicator() {
         //
     }
     
     func dataReady() {
-        self.getSelectedPokemon()
+//        self.getSelectedPokemon()
     }
     
     func display(error: APIError) {

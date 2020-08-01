@@ -11,5 +11,6 @@ import Foundation
 protocol SingleViewable: class {
     func stopLoadingIndicator()
     func dataReady()
+    func populateData(pokemon: Pokemon) 
     func display(error: APIError)
 }

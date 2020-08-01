@@ -187,14 +187,15 @@
 		B63BF2C624D1331E003107F7 /* Pokemon */ = {
 			isa = PBXGroup;
 			children = (
+				B6C8D5F224D3625200F9CAC5 /* UICollectionViewCell */,
+				B629C39624D3F9BE00ECAF18 /* Extension */,
+				B629C3A024D4010900ECAF18 /* Favourites */,
+				B6D285CE24D33E83004B68F4 /* BaseClasses */,
 				B62F3AB924D45671009BE6D5 /* Strings */,
 				B6AA779924D43A1B00934936 /* SingleView */,
-				B629C3A024D4010900ECAF18 /* Favourites */,
 				B629C39924D4000900ECAF18 /* SearchPokemon */,
-				B629C39624D3F9BE00ECAF18 /* Extension */,
-				B6C8D5F224D3625200F9CAC5 /* UICollectionViewCell */,
-				B6D285CE24D33E83004B68F4 /* BaseClasses */,
 				B6D285BD24D33C20004B68F4 /* Pokedex */,
+				B6D285BE24D33C7A004B68F4 /* Repository */,
 				B6DF9A9C24D17AF500975DC2 /* Service Layer */,
 				B63BF2C724D1331E003107F7 /* AppDelegate.swift */,
 				B63BF2C924D1331E003107F7 /* SceneDelegate.swift */,
@@ -271,7 +272,6 @@
 				B6D285C324D33CDB004B68F4 /* Protocols */,
 				B6D285C024D33C91004B68F4 /* ViewController */,
 				B6D285BF24D33C82004B68F4 /* ViewModel */,
-				B6D285BE24D33C7A004B68F4 /* Repository */,
 			);
 			path = Pokedex;
 			sourceTree = "<group>";
