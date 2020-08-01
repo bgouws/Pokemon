@@ -22,7 +22,7 @@ class SearchViewController: UIViewController {
     func loadSearchList() {
         viewModel.view = self
         viewModel.repo = Repository()
-        viewModel.getList()
+        viewModel.getAllPokemon()
     }
     
     func createTableView() {
@@ -47,7 +47,7 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.viewModel.filterGuides(searchText: searchText, array: self.pokemonList)
+        self.viewModel.filterPokemon(searchText: searchText, array: self.pokemonList)
         if searchText == "" {
             tableView.isHidden = true
         } else {
@@ -55,7 +55,7 @@ extension SearchViewController: UISearchBarDelegate {
         }
     }
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        self.viewModel.filterGuides(searchText: "", array: self.pokemonList)
+        self.viewModel.filterPokemon(searchText: "", array: self.pokemonList)
         tableView.isHidden = true
     }
     

@@ -14,19 +14,19 @@ class searchViewModel {
     var pokemonList: [PokemonName] = []
     var filteredPokemon: [PokemonName] = []
     
-    func getList(url: String = Endpoint.all.rawValue) {
+    func getAllPokemon(url: String = Endpoint.all.rawValue) {
         repo?.getPokemon(endpoint: url, completion: { result in
             switch result {
-            case .success(let pokemonList):
-                self.pokemonList = pokemonList.results
-                self.view?.populateData(pokemonList: pokemonList)
+            case .success(let pokemon):
+                self.pokemonList = pokemon.results
+                self.view?.populateData(pokemonList: pokemon)
             case .failure(let error):
                 self.view?.displayError(error: error)
             }
         })
     }
     
-    func filterGuides(searchText: String, array: [PokemonName]) {
+    func filterPokemon(searchText: String, array: [PokemonName]) {
         filteredPokemon = self.pokemonList.filter({ (pokemonName: PokemonName) -> Bool in
             return pokemonName.name.lowercased().contains(searchText.lowercased())
         })
