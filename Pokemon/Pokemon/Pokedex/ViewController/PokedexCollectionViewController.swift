@@ -21,8 +21,8 @@ class PokedexCollectionViewController: UICollectionViewController {
     
     func loadPokedex() {
         viewModel.view = self
-        viewModel.repo = PokedexRepository()
-        viewModel.getPokemonList()
+        viewModel.repo = Repository()
+        viewModel.getPokemon()
     }
     
     func setUpNavigation() {
@@ -31,7 +31,7 @@ class PokedexCollectionViewController: UICollectionViewController {
     }
     
     func loadNextPage(url: String) {  
-        viewModel.getPokemonList(url: url)
+        viewModel.getPokemon(url: url)
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

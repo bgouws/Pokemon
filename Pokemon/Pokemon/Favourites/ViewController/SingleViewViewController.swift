@@ -32,7 +32,7 @@ class SingleViewViewController: UIViewController {
     
     func getPokemon() {
         viewModel.view = self
-        viewModel.repo = PokedexRepository()
+        viewModel.repo = Repository()
         guard let url = pokemonURL else { return }
         viewModel.getSinglePokemon(url: url)
     }

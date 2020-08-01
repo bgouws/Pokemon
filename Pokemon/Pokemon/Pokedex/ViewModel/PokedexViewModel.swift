@@ -8,28 +8,28 @@
 
 import Foundation
 
-class PokedexViewModel {
+class PokedexViewModel: PokedexViewModelable {
     public weak var view: PokedexViewable?
-    public var repo: PokedexRepositorable?
+    public var repo: Repositorable?
     var singlePokemon = [Pokemon]()
 
-    func getPokemonList(url: String = baseURL) {
-        repo?.getPokemonName(endpoint: url, completion: { result in
+    func getPokemon(url: String = baseURL) {
+        repo?.getPokemon(endpoint: url, completion: { result in
             switch result {
-            case .success(let pokemonList):
-                self.getSinglePokemonList(pokemonList: pokemonList)
-                self.view?.populateData(pokemonList: pokemonList)
+            case .success(let pokemon):
+                self.getSinglePokemon(pokemon: pokemon.results)
+                self.view?.populateData(pokemonList: pokemon)
             case .failure(let error):
                 self.view?.displayError(error: error)
             }
         })
     }
     
-    private func getSinglePokemonList(pokemonList: PokemonResponse) {
+    func getSinglePokemon(pokemon: [PokemonName]) {
         let group = DispatchGroup()
-        for pokemon in 0...pokemonList.results.count - 1 { 
+        for index in 0...pokemon.count - 1 {
             group.enter()
-            repo?.getIndividualPokemon(endpoint: pokemonList.results[pokemon].url, method: .GET, completion: { result in
+            repo?.getSinglePokemon(endpoint: pokemon[index].url, method: .GET, completion: { result in
                 switch result {
                 case .success(let singlePokemon):
                     self.singlePokemon.append(singlePokemon)
