@@ -11,7 +11,7 @@ import UIKit
 class SearchViewController: UIViewController {
     let viewModel = searchViewModel()
     let tableView = UITableView()
-    var pokemonList = [PokemonName]()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         loadSearchList()
@@ -50,7 +50,7 @@ class SearchViewController: UIViewController {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let singleViewViewController = storyBoard.instantiateViewController(withIdentifier: "SingleView") as! SingleViewViewController
         singleViewViewController.searching = true
-        singleViewViewController.pokemonURL = pokemonList[index].url
+        singleViewViewController.pokemonURL = viewModel.getSelectedPokemonURL(index: index)
         self.navigationController?.pushViewController(singleViewViewController, animated: true)
     }
 }
@@ -77,15 +77,6 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 extension SearchViewController: SearchViewable {
-    func passFilteredPokemon(filteredList: [PokemonName]) {
-        self.pokemonList = filteredList
-        self.tableView.reloadData()
-    }
-    
-    func populateData(pokemonList: PokemonResponse) {
-        self.pokemonList = pokemonList.results
-    }
-    
     func displayError(error: APIError) {
         self.showActionAlert(title: "Error",
         message: error.localizedDescription,
@@ -95,20 +86,20 @@ extension SearchViewController: SearchViewable {
     }
     
     func stopLoadingIndicator() {
-        //
+        self.tableView.reloadData()
     }
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.pokemonList.count
+        return viewModel.getCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        cell?.textLabel?.text = self.pokemonList[indexPath.row].name
-        return cell!
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else { return UITableViewCell() }
+        cell.textLabel?.text = viewModel.getPokemonName(index: indexPath.row)
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
