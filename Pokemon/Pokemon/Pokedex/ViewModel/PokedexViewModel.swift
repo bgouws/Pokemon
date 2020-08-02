@@ -12,7 +12,6 @@ class PokedexViewModel: PokedexViewModelable {
     public weak var view: PokedexViewable?
     public var repo: Repositorable?
     var singlePokemon = [Pokemon]()
-    var pokemonList: [PokemonName]?
     var nextPage: String?
 
     func getPokemon(url: String = baseURL) {
@@ -20,7 +19,6 @@ class PokedexViewModel: PokedexViewModelable {
             switch result {
             case .success(let pokemon):
                 self.getSinglePokemon(pokemon: pokemon.results)
-                self.pokemonList = pokemon.results
                 self.nextPage = pokemon.next
             case .failure(let error):
                 self.view?.displayError(error: error)
