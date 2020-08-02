@@ -41,8 +41,13 @@ class PokedexViewModel: PokedexViewModelable {
             })
         }
         group.notify(queue: DispatchQueue.main) {
+            self.sortPokemon(pokemon: self.singlePokemon)
             self.view?.stopLoadingIndicator()
         }
+    }
+    
+    private func sortPokemon(pokemon: [Pokemon]) {
+        self.singlePokemon = pokemon.sorted(by: {$0.id < $1.id})
     }
     
     func nextSinglePokemon(index: Int) -> Pokemon {
