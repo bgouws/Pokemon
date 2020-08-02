@@ -11,6 +11,7 @@ import UIKit
 
 extension UIImageView {
     func downloadImage(from url: URL) {
+        self.image = UIImage(named: "imageLoading")
         getData(from: url) { data, response, error in
             guard let data = data, error == nil else { return }
             DispatchQueue.main.async() {
