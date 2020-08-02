@@ -26,12 +26,13 @@ class searchViewModel {
         })
     }
     
-    func filterPokemon(searchText: String, array: [PokemonName]) {
+    func filterPokemon(searchText: String) {
         filteredPokemon = self.pokemonList.filter({ (pokemonName: PokemonName) -> Bool in
             return pokemonName.name.lowercased().contains(searchText.lowercased())
         })
         if searchText == "" {
-            self.view?.passFilteredPokemon(filteredList: self.pokemonList)
+            let emptyList: [PokemonName] = []
+            self.view?.passFilteredPokemon(filteredList: emptyList)
         } else {
             self.view?.passFilteredPokemon(filteredList: filteredPokemon)
         }

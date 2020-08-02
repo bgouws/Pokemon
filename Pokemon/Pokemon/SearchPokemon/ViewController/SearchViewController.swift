@@ -16,7 +16,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         loadSearchList()
         setUpNavigationBar()
-        createTableView()
+        setUpTableView()
     }
     
     func loadSearchList() {
@@ -25,13 +25,15 @@ class SearchViewController: UIViewController {
         viewModel.getAllPokemon()
     }
     
-    func createTableView() {
+    func setUpTableView() {
         self.view.addSubview(self.tableView)
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
-        self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isHidden = true
@@ -43,11 +45,19 @@ class SearchViewController: UIViewController {
         self.navigationItem.searchController?.searchBar.delegate = self
         self.navigationItem.hidesSearchBarWhenScrolling = false
     }
+    
+    private func moveToSingleView(index: Int) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let singleViewViewController = storyBoard.instantiateViewController(withIdentifier: "SingleView") as! SingleViewViewController
+        singleViewViewController.searching = true
+        singleViewViewController.pokemonURL = pokemonList[index].url
+        self.navigationController?.pushViewController(singleViewViewController, animated: true)
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.viewModel.filterPokemon(searchText: searchText, array: self.pokemonList)
+        self.viewModel.filterPokemon(searchText: searchText)
         if searchText == "" {
             tableView.isHidden = true
         } else {
@@ -55,7 +65,7 @@ extension SearchViewController: UISearchBarDelegate {
         }
     }
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        self.viewModel.filterPokemon(searchText: "", array: self.pokemonList)
+        self.viewModel.filterPokemon(searchText: "")
         tableView.isHidden = true
     }
     
@@ -86,14 +96,6 @@ extension SearchViewController: SearchViewable {
     
     func stopLoadingIndicator() {
         //
-    }
-    
-    private func moveToSingleView(index: Int) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let singleViewViewController = storyBoard.instantiateViewController(withIdentifier: "SingleView") as! SingleViewViewController
-        singleViewViewController.searching = true
-        singleViewViewController.pokemonURL = pokemonList[index].url
-        self.navigationController?.pushViewController(singleViewViewController, animated: true)
     }
 }
 
