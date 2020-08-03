@@ -36,7 +36,7 @@ class PokedexCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellConstants.collectionViewCell, for: indexPath) as? CollectionViewCell else {
             return UICollectionViewCell()
         }
-        let pokemon = viewModel.nextSinglePokemon(index: indexPath.row)
+        let pokemon = viewModel.getCurrentPokemon(index: indexPath.row)
         cell.setUp(pokemon: pokemon)
         return cell
     }

@@ -32,7 +32,7 @@ class PokedexViewModel: PokedexViewModelable {
         })
     }
     
-    func getSinglePokemon(pokemon: [PokemonName]) {
+    private func getSinglePokemon(pokemon: [PokemonName]) {
         let group = DispatchGroup()
         for index in 0..<pokemon.count {
             group.enter()
@@ -54,10 +54,6 @@ class PokedexViewModel: PokedexViewModelable {
     
     private func sortPokemon(pokemon: [Pokemon]) {
         self.singlePokemon = pokemon.sorted(by: {$0.id < $1.id})
-    }
-    
-    func nextSinglePokemon(index: Int) -> Pokemon {
-        return self.singlePokemon[index]
     }
     
     func getCount() -> Int {

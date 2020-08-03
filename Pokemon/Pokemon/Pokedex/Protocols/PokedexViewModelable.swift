@@ -10,5 +10,4 @@ import Foundation
 
 protocol PokedexViewModelable {
     func getPokemon(url: String)
-    func getSinglePokemon(pokemon: [PokemonName])
 }
