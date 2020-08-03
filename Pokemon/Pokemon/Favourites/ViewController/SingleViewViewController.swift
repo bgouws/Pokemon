@@ -41,10 +41,10 @@ class SingleViewViewController: UIViewController {
         guard let singlePokemon = self.singlePokemon else {return}
         guard let url = URL(string: singlePokemon.sprites.front_default) else { return }
         self.title = singlePokemon.name
-        self.lblName.text = "Name: \(singlePokemon.name)"
-        self.lblBaseExperience.text = "Base Experience: \(singlePokemon.base_experience)"
-        self.lblHeight.text = "Height: \(singlePokemon.height)"
-        self.lblWeight.text = "Weight: \(singlePokemon.weight)"
+        self.lblName.text = "\("single.name".localized(in: "GlobalStrings"))\(singlePokemon.name)"
+        self.lblBaseExperience.text = "\("single.experience".localized(in: "GlobalStrings"))\(singlePokemon.base_experience)"
+        self.lblHeight.text = "\("single.height".localized(in: "GlobalStrings"))\(singlePokemon.height)"
+        self.lblWeight.text = "\("single.weight".localized(in: "GlobalStrings"))\(singlePokemon.weight)"
         self.imgView.downloadImage(from: url)
     }
     
@@ -66,9 +66,9 @@ extension SingleViewViewController: SingleViewable {
     }
     
     func display(error: APIError) {
-        self.showActionAlert(title: "Error",
+        self.showActionAlert(title: "error.title".localized(in: "GlobalStrings"),
                              message: error.localizedDescription,
-                             actions: [UIAlertAction(title: "Cancel",
+                             actions: [UIAlertAction(title: "error.cancel".localized(in: "GlobalStrings"),
                                                      style: .cancel)],
                              style: .alert)
     }

@@ -1,0 +1,25 @@
+/* 
+  GlobalStrings.strings
+  Pokemon
+
+  Created by Brandon Gouws on 2020/08/03.
+  Copyright © 2020 DVT. All rights reserved.
+*/
+
+
+// Pokedex Screen
+"pokedex.title" = "Pokédex";
+
+// Search Screen
+"search.title" = "Search Pokémon";
+
+// SingleView
+"single.name" = "Pokémon Name: ";
+"single.experience" = "Base Experience: ";
+"single.height" = "Pokémon Height: ";
+"single.weight" = "Pokémon Weight: ";
+
+// General
+
+"error.title" = "Error";
+"error.cancel" = "Cancel";

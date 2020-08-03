@@ -24,7 +24,7 @@ class PokedexCollectionViewController: UICollectionViewController {
     }
     
     func setUpNavigation() {
-        self.title = "Pokedex"
+        self.title = "pokedex.title".localized(in: "GlobalStrings")
         self.styleNavigationBar(searchbar: false)
     }
 
@@ -33,7 +33,7 @@ class PokedexCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Pokemon", for: indexPath) as? CollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellConstants.collectionViewCell, for: indexPath) as? CollectionViewCell else {
             return UICollectionViewCell()
         }
         let pokemon = viewModel.nextSinglePokemon(index: indexPath.row)
@@ -64,9 +64,9 @@ class PokedexCollectionViewController: UICollectionViewController {
 extension PokedexCollectionViewController: PokedexViewable {
     
     func displayError(error: APIError) {
-        self.showActionAlert(title: "Error",
+        self.showActionAlert(title: "error.title".localized(in: "GlobalStrings"),
                              message: error.localizedDescription,
-                             actions: [UIAlertAction(title: "Cancel",
+                             actions: [UIAlertAction(title: "error.cancel".localized(in: "GlobalStrings"),
                                                      style: .cancel)],
                              style: .alert)
     }

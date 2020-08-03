@@ -39,6 +39,9 @@
 		B6DF9A9924D1704300975DC2 /* PokemonResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DF9A9824D1704300975DC2 /* PokemonResponseModel.swift */; };
 		B6DF9A9B24D171A400975DC2 /* httpServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DF9A9A24D171A400975DC2 /* httpServiceType.swift */; };
 		B6DF9AA224D17B7A00975DC2 /* endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DF9AA124D17B7A00975DC2 /* endpoints.swift */; };
+		B6EF72FA24D805EB00590BE9 /* GlobalStrings.strings in Resources */ = {isa = PBXBuildFile; fileRef = B6EF72F924D805EB00590BE9 /* GlobalStrings.strings */; };
+		B6EF72FC24D80C1B00590BE9 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EF72FB24D80C1B00590BE9 /* StringExtension.swift */; };
+		B6EF72FF24D80EC900590BE9 /* CellConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EF72FE24D80EC900590BE9 /* CellConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +91,9 @@
 		B6DF9A9824D1704300975DC2 /* PokemonResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonResponseModel.swift; sourceTree = "<group>"; };
 		B6DF9A9A24D171A400975DC2 /* httpServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = httpServiceType.swift; sourceTree = "<group>"; };
 		B6DF9AA124D17B7A00975DC2 /* endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endpoints.swift; sourceTree = "<group>"; };
+		B6EF72F924D805EB00590BE9 /* GlobalStrings.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = GlobalStrings.strings; sourceTree = "<group>"; };
+		B6EF72FB24D80C1B00590BE9 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		B6EF72FE24D80EC900590BE9 /* CellConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +121,7 @@
 				B60B01D724D45806001E057C /* UIImageViewExtension.swift */,
 				B6BF720224D6047400F1B918 /* UICollectionViewExtension.swift */,
 				B619E01224D7FA66008E3353 /* UILabelExtension.swift */,
+				B6EF72FB24D80C1B00590BE9 /* StringExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -170,13 +177,6 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		B62F3AB924D45671009BE6D5 /* Strings */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Strings;
-			sourceTree = "<group>";
-		};
 		B63BF2BB24D1331E003107F7 = {
 			isa = PBXGroup;
 			children = (
@@ -198,11 +198,12 @@
 		B63BF2C624D1331E003107F7 /* Pokemon */ = {
 			isa = PBXGroup;
 			children = (
+				B6EF72FD24D80EA600590BE9 /* Constants */,
+				B6EF72F824D805D000590BE9 /* Strings */,
 				B6C8D5F224D3625200F9CAC5 /* UICollectionViewCell */,
 				B629C39624D3F9BE00ECAF18 /* Extension */,
 				B629C3A024D4010900ECAF18 /* Favourites */,
 				B6D285CE24D33E83004B68F4 /* BaseClasses */,
-				B62F3AB924D45671009BE6D5 /* Strings */,
 				B6AA779924D43A1B00934936 /* SingleView */,
 				B629C39924D4000900ECAF18 /* SearchPokemon */,
 				B6D285BD24D33C20004B68F4 /* Pokedex */,
@@ -374,6 +375,22 @@
 			path = Endpoints;
 			sourceTree = "<group>";
 		};
+		B6EF72F824D805D000590BE9 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				B6EF72F924D805EB00590BE9 /* GlobalStrings.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		B6EF72FD24D80EA600590BE9 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				B6EF72FE24D80EC900590BE9 /* CellConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -455,6 +472,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6EF72FA24D805EB00590BE9 /* GlobalStrings.strings in Resources */,
 				B63BF2D424D1331F003107F7 /* LaunchScreen.storyboard in Resources */,
 				B63BF2D124D1331F003107F7 /* Assets.xcassets in Resources */,
 				B63BF2CF24D1331E003107F7 /* Main.storyboard in Resources */,
@@ -480,6 +498,7 @@
 				B6C91C7824D5B99E00B0424C /* SingleViewViewModel.swift in Sources */,
 				B63BF2C824D1331E003107F7 /* AppDelegate.swift in Sources */,
 				B619E01324D7FA66008E3353 /* UILabelExtension.swift in Sources */,
+				B6EF72FF24D80EC900590BE9 /* CellConstants.swift in Sources */,
 				B6BF71FF24D5F86100F1B918 /* SingleViewModelable.swift in Sources */,
 				B6D285C924D33DD3004B68F4 /* PokedexViewModelable.swift in Sources */,
 				B6B1597A24D415F700A7112F /* SearchViewable.swift in Sources */,
@@ -487,6 +506,7 @@
 				B60B01D824D45806001E057C /* UIImageViewExtension.swift in Sources */,
 				B629C39F24D4008900ECAF18 /* SearchViewController.swift in Sources */,
 				B6C8D5F124D3592300F9CAC5 /* PokedexCollectionViewController.swift in Sources */,
+				B6EF72FC24D80C1B00590BE9 /* StringExtension.swift in Sources */,
 				B629C39824D3F9D300ECAF18 /* UIViewControllerExtension.swift in Sources */,
 				B6D285D024D33EA5004B68F4 /* BaseViewController.swift in Sources */,
 				B6BF720324D6047400F1B918 /* UICollectionViewExtension.swift in Sources */,
