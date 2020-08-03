@@ -9,7 +9,7 @@ This project is a take home project given to me by ABSA, majority of the UI is c
 When the user opens the application they are greeted with the Pokedex screen, here they are able to scroll through all the existing Pokemon, this is acomplished by making paginated requests, which will only download the data that the user wants to see, this makes the user experience great as the user is not limited by a predetermind cap as well as the application is not using too much data as it is loading this information on demand. 
 
 Screenshot: 
-
+![](Pokemon/Screenshots/Pokedex.png)
 
 
 
@@ -21,6 +21,9 @@ If the user were interested in one of the Pokemon they see in the UICollectionVi
 The user can navigate to this screen by selecting the search icon in the UITabBar, they will be greeted with a screen with a search bar where they can enter a Pokemons name, it will actively filter the names of the Pokemon which will also encourage the user to explore and discover, the PokeApi does not have a search enpoint, so this feature was create by me, once the user is done searching they can click on any of the results that are being displayed, similarly to the Pokedex screen this will allow the user to navigate to a SingleView screen, where they can see more information about the selescted Pokemon. 
 
 Screenshot: 
+![](Pokemon/Screenshots/searchPokemon.png)
+![](Pokemon/Screenshots/SearchPokemonSearching.png)
+
 
 
 ## SingleView (Screen 3)
@@ -28,6 +31,7 @@ Screenshot:
 On this screen the user will be able to see a Pokemon in greater detail than the other screens, this screen is reused and will either use the already downloaded content from the Pokedex screen or it will fetch the selected Pokemon from the search screen. 
 
 Screenshot: 
+![](Pokemon/Screenshots/SingleView.png)
 
 
 # Limitations of the API: 
@@ -38,7 +42,7 @@ It seems that the API has a few limitations namely:
 - A lot of nested data which requires multiple calls
 
 
-I was able to overcome most of these limitations, although I know they are not as efficient as they could be if the limitations were not present. 
+I was able to overcome most of these limitations, although I know they are not as efficient as they could be if the limitations were not present. Namely getting the list of Pokemon with all their attributes was quite challenging. 
 
 ### Search Limitation
 
