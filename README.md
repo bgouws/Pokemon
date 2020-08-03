@@ -53,11 +53,20 @@ The PokeApi has no built in search, so I needed to create the search feature fro
 The PokeApi has a lot of nested data and to get all the data required normally needs multiple service calls, for example here is the response from hitting the BaseURL: https://pokeapi.co/api/v2/pokemon
 
 Screenshot: 
+![](Pokemon/Screenshots/Response.png)
 
 This seems to be the only way to get a list of the Pokemon, and as you can see, if you wanted to get more detail on an individual Pokemon you would need to make another service call, with the url provided in this response, which I needed to do for the Pokedex screen. So to present a list of Pokemon with an image of how the Pokemon looks requires a little more work than expected. 
 
 # Other Features and Improvements I would/Wanted to add if given the time
 
+Just to name a few: 
+
+- Unit Tests
+- Caching layer
+- UI Testing
+- Add Favourites feature
+- Making the collection view generic to allow for other features to make use of collectionViews e.g. Favourites feaute
+- As well as making the table view generic
 
 
 
