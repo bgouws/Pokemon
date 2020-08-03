@@ -35,7 +35,13 @@ extension UIViewController {
         if searchbar {
             let searchController = UISearchController(searchResultsController: nil)
             navigationItem.searchController = searchController
-            searchController.searchBar.backgroundColor = .clear
+            guard let searchBarTextField = self.navigationItem.searchController?.searchBar.searchTextField else {
+                return
+            }
+            searchController.searchBar.backgroundColor = .systemRed
+            searchBarTextField.backgroundColor = .lightGray
+            searchBarTextField.textColor = .black
+            searchBarTextField.placeholder = "Search Pokemon"
             navigationItem.searchController?.obscuresBackgroundDuringPresentation = false
             navigationItem.hidesSearchBarWhenScrolling = false
         }

@@ -37,6 +37,7 @@ class SingleViewViewController: UIViewController {
     }
     
     func populateFields() {
+        styleLabels()
         guard let singlePokemon = self.singlePokemon else {return}
         guard let url = URL(string: singlePokemon.sprites.front_default) else { return }
         self.title = singlePokemon.name
@@ -45,6 +46,14 @@ class SingleViewViewController: UIViewController {
         self.lblHeight.text = "Height: \(singlePokemon.height)"
         self.lblWeight.text = "Weight: \(singlePokemon.weight)"
         self.imgView.downloadImage(from: url)
+    }
+    
+    
+    func styleLabels() {
+        lblName.styleLabels()
+        lblBaseExperience.styleLabels()
+        lblHeight.styleLabels()
+        lblWeight.styleLabels()
     }
 }
 
