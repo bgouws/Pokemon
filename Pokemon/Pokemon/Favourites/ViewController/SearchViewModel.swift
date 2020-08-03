@@ -19,7 +19,7 @@ class searchViewModel: SearchViewmodelable {
     }
     
     func getAllPokemon() {
-        repo?.getPokemonResponse(endpoint: Endpoint.all.rawValue, completion: { result in
+        repo?.getPokemonResponse(endpoint: Endpoint.allPokemon.rawValue, completion: { result in
             switch result {
             case .success(let pokemon):
                 self.pokemonList = pokemon.results

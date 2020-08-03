@@ -48,7 +48,6 @@ class SearchViewController: UIViewController {
     private func moveToSingleView(index: Int) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let singleViewViewController = storyBoard.instantiateViewController(withIdentifier: "SingleView") as! SingleViewViewController
-        singleViewViewController.searching = true
         singleViewViewController.pokemonURL = viewModel.getSelectedPokemonURL(index: index)
         self.navigationController?.pushViewController(singleViewViewController, animated: true)
     }
