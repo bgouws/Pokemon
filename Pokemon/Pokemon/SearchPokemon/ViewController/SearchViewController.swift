@@ -9,7 +9,7 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-    let viewModel = searchViewModel()
+    private lazy var viewModel = searchViewModel()
     private lazy var tableView = UITableView()
         
     override func viewDidLoad() {
