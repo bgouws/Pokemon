@@ -11,4 +11,5 @@ import Foundation
 protocol SearchViewable: class {
     func displayError(error: APIError)
     func stopLoadingIndicator()
+    func dataReady() 
 }

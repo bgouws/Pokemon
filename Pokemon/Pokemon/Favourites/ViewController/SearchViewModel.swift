@@ -8,17 +8,22 @@
 
 import Foundation
 
-class searchViewModel {
+class searchViewModel: SearchViewmodelable {
     public weak var view: SearchViewable?
     public var repo: Repositorable?
-    var pokemonList: [PokemonName] = []
-    var filteredPokemon: [PokemonName] = []
+    private var pokemonList: [PokemonName] = []
+    private var filteredPokemon: [PokemonName] = []
     
-    func getAllPokemon(url: String = Endpoint.all.rawValue) {
-        repo?.getPokemon(endpoint: url, completion: { result in
+    init() {
+        self.repo = Repository()
+    }
+    
+    func getAllPokemon() {
+        repo?.getPokemonResponse(endpoint: Endpoint.allPokemon.rawValue, completion: { result in
             switch result {
             case .success(let pokemon):
                 self.pokemonList = pokemon.results
+                self.view?.stopLoadingIndicator()
             case .failure(let error):
                 self.view?.displayError(error: error)
             }
@@ -30,9 +35,9 @@ class searchViewModel {
             return pokemonName.name.lowercased().contains(searchText.lowercased())
         })
         if searchText == "" {
-            self.view?.stopLoadingIndicator()
+            self.view?.dataReady()
         } else {
-            self.view?.stopLoadingIndicator()
+            self.view?.dataReady()
         }
         
     }

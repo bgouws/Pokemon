@@ -8,12 +8,9 @@
 
 import Foundation
 
-let baseURL = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=20"
-
 enum Endpoint: String {
-    case name = "OtherEndPoints"
-    case basic = "?offset=0&limit=20"
-    case all = "https://pokeapi.co/api/v2/pokemon?limit=964"
+    case allPokemon = "https://pokeapi.co/api/v2/pokemon?limit=964"
+    case page = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=20"
 }
 
 enum Method: String {

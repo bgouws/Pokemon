@@ -14,17 +14,17 @@ class PokedexCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadPokedex()
+        showLoadingIndicator()
         setUpNavigation()
     }
     
-    func loadPokedex() {
+    private func loadPokedex() {
         viewModel.view = self
-        viewModel.repo = Repository()
         viewModel.getPokemon()
     }
     
-    func setUpNavigation() {
-        self.title = "Pokedex"
+    private func setUpNavigation() {
+        self.title = "pokedex.title".localized(in: "GlobalStrings")
         self.styleNavigationBar(searchbar: false)
     }
 
@@ -33,45 +33,44 @@ class PokedexCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Pokemon", for: indexPath) as? CollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellConstants.collectionViewCell, for: indexPath) as? CollectionViewCell else {
             return UICollectionViewCell()
         }
-        let pokemon = viewModel.nextSinglePokemon(index: indexPath.row)
+        let pokemon = viewModel.getCurrentPokemon(index: indexPath.row)
         cell.setUp(pokemon: pokemon)
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row == viewModel.getCount() - 3 {
+        if indexPath.row == viewModel.getCount() - 1 {
             viewModel.loadNextPage()
         }
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedPokemon = viewModel.getCurrentPokemon(index: indexPath.row)
-        navigateToSingleView(selectedPokemon: selectedPokemon)
+        navigateToSingleView(index: indexPath.row)
     }
     
-    private func navigateToSingleView(selectedPokemon: Pokemon) {
+    private func navigateToSingleView(index: Int) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let singleViewViewController = storyBoard.instantiateViewController(withIdentifier: "SingleView") as! SingleViewViewController
-        singleViewViewController.singlePokemon = selectedPokemon
+        singleViewViewController.pokemonURL = viewModel.getSelectedPokemonURL(index: index)
         self.navigationController?.pushViewController(singleViewViewController, animated: true)
-    }
-    
+    }    
 }
 
 extension PokedexCollectionViewController: PokedexViewable {
     
     func displayError(error: APIError) {
-        self.showActionAlert(title: "Error",
+        self.showActionAlert(title: "error.title".localized(in: "GlobalStrings"),
                              message: error.localizedDescription,
-                             actions: [UIAlertAction(title: "Cancel",
+                             actions: [UIAlertAction(title: "error.cancel".localized(in: "GlobalStrings"),
                                                      style: .cancel)],
                              style: .alert)
     }
     
     func stopLoadingIndicator() {
         self.collectionView.reloadData()
+        self.removeLoadingIndicator()
     }
 }

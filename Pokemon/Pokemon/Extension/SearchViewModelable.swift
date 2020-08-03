@@ -9,6 +9,6 @@
 import Foundation
 
 protocol SearchViewmodelable {
-    func getAllPokemon(url: String)
-    func filterPokemon(searchText: String, array: [PokemonName])
+    func getAllPokemon()
+    func filterPokemon(searchText: String)
 }

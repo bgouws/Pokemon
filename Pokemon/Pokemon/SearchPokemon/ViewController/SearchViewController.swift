@@ -10,22 +10,21 @@ import UIKit
 
 class SearchViewController: UIViewController {
     let viewModel = searchViewModel()
-    let tableView = UITableView()
+    private lazy var tableView = UITableView()
         
     override func viewDidLoad() {
         super.viewDidLoad()
         loadSearchList()
+        showLoadingIndicator()
         setUpNavigationBar()
-        setUpTableView()
     }
     
-    func loadSearchList() {
+    private func loadSearchList() {
         viewModel.view = self
-        viewModel.repo = Repository()
         viewModel.getAllPokemon()
     }
     
-    func setUpTableView() {
+    private func setUpTableView() {
         self.view.addSubview(self.tableView)
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -39,8 +38,8 @@ class SearchViewController: UIViewController {
         tableView.isHidden = true
     }
     
-    func setUpNavigationBar() {
-        self.title = "Seach Pokemon"
+    private func setUpNavigationBar() {
+        self.title = "search.title".localized(in: "GlobalStrings")
         self.styleNavigationBar(searchbar: true)
         self.navigationItem.searchController?.searchBar.delegate = self
         self.navigationItem.hidesSearchBarWhenScrolling = false
@@ -49,7 +48,6 @@ class SearchViewController: UIViewController {
     private func moveToSingleView(index: Int) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let singleViewViewController = storyBoard.instantiateViewController(withIdentifier: "SingleView") as! SingleViewViewController
-        singleViewViewController.searching = true
         singleViewViewController.pokemonURL = viewModel.getSelectedPokemonURL(index: index)
         self.navigationController?.pushViewController(singleViewViewController, animated: true)
     }
@@ -77,16 +75,23 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 extension SearchViewController: SearchViewable {
+    func dataReady() {
+        self.setUpTableView()
+        self.tableView.reloadData()
+    }
+    
     func displayError(error: APIError) {
-        self.showActionAlert(title: "Error",
+        self.showActionAlert(title: "error.title".localized(in: "GlobalStrings"),
         message: error.localizedDescription,
-        actions: [UIAlertAction(title: "Cancel",
+        actions: [UIAlertAction(title: "error.cancel".localized(in: "GlobalStrings"),
                                 style: .cancel)],
             style: .alert)
     }
     
     func stopLoadingIndicator() {
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.removeLoadingIndicator()
+        }
     }
 }
 
@@ -96,8 +101,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else { return UITableViewCell() }
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: CellConstants.tableViewCell)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellConstants.tableViewCell) else { return UITableViewCell() }
         cell.textLabel?.text = viewModel.getPokemonName(index: indexPath.row)
         return cell
     }

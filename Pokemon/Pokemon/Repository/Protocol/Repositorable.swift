@@ -9,6 +9,6 @@
 import Foundation
 
 protocol Repositorable {
-    func getPokemon(endpoint: String, completion: @escaping((Result<PokemonResponse, APIError>) -> Void))
-    func getSinglePokemon(endpoint: String, method: Method, completion: @escaping((Result<Pokemon, APIError>) -> Void))
+    func getPokemonResponse(endpoint: String, completion: @escaping((Result<PokemonResponse, APIError>) -> Void))
+    func getSinglePokemon(endpoint: String, completion: @escaping((Result<Pokemon, APIError>) -> Void))
 }

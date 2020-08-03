@@ -9,57 +9,60 @@
 import UIKit
 
 class SingleViewViewController: UIViewController {
-    var singlePokemon: Pokemon?
     var pokemonURL: String?
-    var searching: Bool?
     private lazy var viewModel = SingleViewViewModel()
     
-    @IBOutlet weak var imgView: UIImageView!
-    @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblBaseExperience: UILabel!
-    @IBOutlet weak var lblHeight: UILabel!
-    @IBOutlet weak var lblWeight: UILabel!
+    @IBOutlet private weak var imgView: UIImageView!
+    @IBOutlet private weak var lblName: UILabel!
+    @IBOutlet private weak var lblBaseExperience: UILabel!
+    @IBOutlet private weak var lblHeight: UILabel!
+    @IBOutlet private weak var lblWeight: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if self.searching != nil {
-            getPokemon()
-        } else {
-            populateFields()
-        }
+        showLoadingIndicator()
+        getPokemon()
     }
     
-    func getPokemon() {
+    private func getPokemon() {
         viewModel.view = self
-        viewModel.repo = Repository()
         guard let url = pokemonURL else { return }
         viewModel.getSinglePokemon(url: url)
     }
     
-    func populateFields() {
-        guard let singlePokemon = self.singlePokemon else {return}
-        guard let url = URL(string: singlePokemon.sprites.front_default) else { return }
-        self.title = singlePokemon.name
-        self.lblName.text = "Name: \(singlePokemon.name)"
-        self.lblBaseExperience.text = "Base Experience: \(singlePokemon.base_experience)"
-        self.lblHeight.text = "Height: \(singlePokemon.height)"
-        self.lblWeight.text = "Weight: \(singlePokemon.weight)"
+    private func populateFields() {
+        styleLabels()
+        guard let pokemon = viewModel.getSelectedPokemon() else { return }
+        guard let url = URL(string: pokemon.sprites.front_default) else { return }
+        self.title = pokemon.name
+        self.lblName.text = "\("single.name".localized(in: "GlobalStrings"))\(pokemon.name)"
+        self.lblBaseExperience.text = "\("single.experience".localized(in: "GlobalStrings"))\(pokemon.base_experience)"
+        self.lblHeight.text = "\("single.height".localized(in: "GlobalStrings"))\(pokemon.height)"
+        self.lblWeight.text = "\("single.weight".localized(in: "GlobalStrings"))\(pokemon.weight)"
         self.imgView.downloadImage(from: url)
+    }
+    
+    
+    private func styleLabels() {
+        lblName.styleLabels()
+        lblBaseExperience.styleLabels()
+        lblHeight.styleLabels()
+        lblWeight.styleLabels()
     }
 }
 
 extension SingleViewViewController: SingleViewable {
-    func populateData(pokemon: Pokemon) {
-        self.singlePokemon = pokemon
+    func stopLoadingIndicator() {
         DispatchQueue.main.async {
             self.populateFields()
+            self.removeLoadingIndicator()
         }
     }
     
     func display(error: APIError) {
-        self.showActionAlert(title: "Error",
+        self.showActionAlert(title: "error.title".localized(in: "GlobalStrings"),
                              message: error.localizedDescription,
-                             actions: [UIAlertAction(title: "Cancel",
+                             actions: [UIAlertAction(title: "error.cancel".localized(in: "GlobalStrings"),
                                                      style: .cancel)],
                              style: .alert)
     }
