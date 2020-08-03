@@ -9,9 +9,9 @@
 import Foundation
 
 class Repository: Repositorable {
-    var httpService: httpServiceType?
+    private var httpService: httpServiceType?
     
-    func getPokemon(endpoint: String, completion: @escaping ((Result<PokemonResponse, APIError>) -> Void)) {
+    func getPokemonResponse(endpoint: String, completion: @escaping ((Result<PokemonResponse, APIError>) -> Void)) {
         self.httpService = HttpService()
         httpService?.getPokemon(endpoint: endpoint, completion: { result in
             switch result {
@@ -23,7 +23,7 @@ class Repository: Repositorable {
         })
     }
     
-    func getSinglePokemon(endpoint: String, method: Method, completion: @escaping((Result<Pokemon, APIError>) -> Void)) {
+    func getSinglePokemon(endpoint: String, completion: @escaping((Result<Pokemon, APIError>) -> Void)) {
         self.httpService = HttpService()
         httpService?.getSinglePokemon(endpoint: endpoint, method: .GET, completion: { result in
             switch result {

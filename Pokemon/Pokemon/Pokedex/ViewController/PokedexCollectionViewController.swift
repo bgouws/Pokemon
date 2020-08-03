@@ -14,16 +14,16 @@ class PokedexCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadPokedex()
+        showLoadingIndicator()
         setUpNavigation()
     }
     
-    func loadPokedex() {
+    private func loadPokedex() {
         viewModel.view = self
-        viewModel.repo = Repository()
         viewModel.getPokemon()
     }
     
-    func setUpNavigation() {
+    private func setUpNavigation() {
         self.title = "pokedex.title".localized(in: "GlobalStrings")
         self.styleNavigationBar(searchbar: false)
     }
@@ -57,8 +57,7 @@ class PokedexCollectionViewController: UICollectionViewController {
         let singleViewViewController = storyBoard.instantiateViewController(withIdentifier: "SingleView") as! SingleViewViewController
         singleViewViewController.singlePokemon = selectedPokemon
         self.navigationController?.pushViewController(singleViewViewController, animated: true)
-    }
-    
+    }    
 }
 
 extension PokedexCollectionViewController: PokedexViewable {
@@ -73,5 +72,6 @@ extension PokedexCollectionViewController: PokedexViewable {
     
     func stopLoadingIndicator() {
         self.collectionView.reloadData()
+        self.removeLoadingIndicator()
     }
 }
