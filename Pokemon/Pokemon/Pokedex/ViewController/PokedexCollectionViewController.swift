@@ -42,20 +42,19 @@ class PokedexCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row == viewModel.getCount() - 3 {
+        if indexPath.row == viewModel.getCount() - 1 {
             viewModel.loadNextPage()
         }
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedPokemon = viewModel.getCurrentPokemon(index: indexPath.row)
-        navigateToSingleView(selectedPokemon: selectedPokemon)
+        navigateToSingleView(index: indexPath.row)
     }
     
-    private func navigateToSingleView(selectedPokemon: Pokemon) {
+    private func navigateToSingleView(index: Int) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let singleViewViewController = storyBoard.instantiateViewController(withIdentifier: "SingleView") as! SingleViewViewController
-        singleViewViewController.singlePokemon = selectedPokemon
+        singleViewViewController.pokemonURL = viewModel.getSelectedPokemonURL(index: index)
         self.navigationController?.pushViewController(singleViewViewController, animated: true)
     }    
 }

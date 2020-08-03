@@ -22,10 +22,15 @@ class SingleViewViewModel: SingleViewModelable {
             switch result {
             case .success(let pokemon):
                 self.pokemon = pokemon
-                self.view?.populateData(pokemon: pokemon)
+                self.view?.stopLoadingIndicator()
             case .failure(let error):
                 self.view?.display(error: error)
             }
         })
+    }
+    
+    func getSelectedPokemon() -> Pokemon? {
+        guard let pokemon = self.pokemon else { return nil }
+        return pokemon
     }
 }

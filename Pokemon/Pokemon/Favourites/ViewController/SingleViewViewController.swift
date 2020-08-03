@@ -9,9 +9,7 @@
 import UIKit
 
 class SingleViewViewController: UIViewController {
-    var singlePokemon: Pokemon?
     var pokemonURL: String?
-    var searching: Bool?
     private lazy var viewModel = SingleViewViewModel()
     
     @IBOutlet private weak var imgView: UIImageView!
@@ -23,12 +21,7 @@ class SingleViewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showLoadingIndicator()
-        if self.searching != nil {
-            getPokemon()
-        } else {
-            removeLoadingIndicator()
-            populateFields()
-        }
+        getPokemon()
     }
     
     private func getPokemon() {
@@ -39,13 +32,13 @@ class SingleViewViewController: UIViewController {
     
     private func populateFields() {
         styleLabels()
-        guard let singlePokemon = self.singlePokemon else {return}
-        guard let url = URL(string: singlePokemon.sprites.front_default) else { return }
-        self.title = singlePokemon.name
-        self.lblName.text = "\("single.name".localized(in: "GlobalStrings"))\(singlePokemon.name)"
-        self.lblBaseExperience.text = "\("single.experience".localized(in: "GlobalStrings"))\(singlePokemon.base_experience)"
-        self.lblHeight.text = "\("single.height".localized(in: "GlobalStrings"))\(singlePokemon.height)"
-        self.lblWeight.text = "\("single.weight".localized(in: "GlobalStrings"))\(singlePokemon.weight)"
+        guard let pokemon = viewModel.getSelectedPokemon() else { return }
+        guard let url = URL(string: pokemon.sprites.front_default) else { return }
+        self.title = pokemon.name
+        self.lblName.text = "\("single.name".localized(in: "GlobalStrings"))\(pokemon.name)"
+        self.lblBaseExperience.text = "\("single.experience".localized(in: "GlobalStrings"))\(pokemon.base_experience)"
+        self.lblHeight.text = "\("single.height".localized(in: "GlobalStrings"))\(pokemon.height)"
+        self.lblWeight.text = "\("single.weight".localized(in: "GlobalStrings"))\(pokemon.weight)"
         self.imgView.downloadImage(from: url)
     }
     
@@ -59,8 +52,7 @@ class SingleViewViewController: UIViewController {
 }
 
 extension SingleViewViewController: SingleViewable {
-    func populateData(pokemon: Pokemon) {
-        self.singlePokemon = pokemon
+    func stopLoadingIndicator() {
         DispatchQueue.main.async {
             self.populateFields()
             self.removeLoadingIndicator()
