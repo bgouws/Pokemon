@@ -12,13 +12,14 @@ class PokedexViewModel: PokedexViewModelable {
     public weak var view: PokedexViewable?
     public var repo: Repositorable?
     var singlePokemon = [Pokemon]()
+    var nextPage: String?
 
     func getPokemon(url: String = baseURL) {
         repo?.getPokemon(endpoint: url, completion: { result in
             switch result {
             case .success(let pokemon):
                 self.getSinglePokemon(pokemon: pokemon.results)
-                self.view?.populateData(pokemonList: pokemon)
+                self.nextPage = pokemon.next
             case .failure(let error):
                 self.view?.displayError(error: error)
             }
@@ -40,7 +41,29 @@ class PokedexViewModel: PokedexViewModelable {
             })
         }
         group.notify(queue: DispatchQueue.main) {
-            self.view?.populateSinglePokemon(singlePokemon: self.singlePokemon)
+            self.sortPokemon(pokemon: self.singlePokemon)
+            self.view?.stopLoadingIndicator()
         }
+    }
+    
+    private func sortPokemon(pokemon: [Pokemon]) {
+        self.singlePokemon = pokemon.sorted(by: {$0.id < $1.id})
+    }
+    
+    func nextSinglePokemon(index: Int) -> Pokemon {
+        return self.singlePokemon[index]
+    }
+    
+    func getCount() -> Int {
+        return self.singlePokemon.count
+    }
+    
+    func getCurrentPokemon(index: Int) -> Pokemon {
+        return self.singlePokemon[index]
+    }
+    
+    func loadNextPage() {
+        guard let url = self.nextPage else { return }
+        getPokemon(url: url)
     }
 }

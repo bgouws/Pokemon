@@ -9,8 +9,6 @@
 import Foundation
 
 protocol SearchViewable: class {
-    func populateData(pokemonList: PokemonResponse)
     func displayError(error: APIError)
     func stopLoadingIndicator()
-    func passFilteredPokemon(filteredList: [PokemonName])
 }

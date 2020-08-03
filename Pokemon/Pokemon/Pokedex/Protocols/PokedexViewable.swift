@@ -9,8 +9,6 @@
 import Foundation
 
 protocol PokedexViewable: class {
-    func populateData(pokemonList: PokemonResponse)
     func displayError(error: APIError)
     func stopLoadingIndicator()
-    func populateSinglePokemon(singlePokemon: [Pokemon])
 }

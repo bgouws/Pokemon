@@ -19,22 +19,33 @@ class searchViewModel {
             switch result {
             case .success(let pokemon):
                 self.pokemonList = pokemon.results
-                self.view?.populateData(pokemonList: pokemon)
             case .failure(let error):
                 self.view?.displayError(error: error)
             }
         })
     }
     
-    func filterPokemon(searchText: String, array: [PokemonName]) {
+    func filterPokemon(searchText: String) {
         filteredPokemon = self.pokemonList.filter({ (pokemonName: PokemonName) -> Bool in
             return pokemonName.name.lowercased().contains(searchText.lowercased())
         })
         if searchText == "" {
-            self.view?.passFilteredPokemon(filteredList: self.pokemonList)
+            self.view?.stopLoadingIndicator()
         } else {
-            self.view?.passFilteredPokemon(filteredList: filteredPokemon)
+            self.view?.stopLoadingIndicator()
         }
         
+    }
+    
+    func getCount() -> Int {
+        return self.filteredPokemon.count
+    }
+    
+    func getSelectedPokemonURL(index: Int) -> String {
+        return self.filteredPokemon[index].url
+    }
+    
+    func getPokemonName(index: Int) -> String {
+        return self.filteredPokemon[index].name
     }
 }
