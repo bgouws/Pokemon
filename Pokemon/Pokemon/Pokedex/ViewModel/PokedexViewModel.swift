@@ -11,11 +11,15 @@ import Foundation
 class PokedexViewModel: PokedexViewModelable {
     public weak var view: PokedexViewable?
     public var repo: Repositorable?
-    var singlePokemon = [Pokemon]()
-    var nextPage: String?
+    private var singlePokemon = [Pokemon]()
+    private var nextPage: String?
+    
+    init() {
+        self.repo = Repository()
+    }
 
     func getPokemon(url: String = baseURL) {
-        repo?.getPokemon(endpoint: url, completion: { result in
+        repo?.getPokemonResponse(endpoint: url, completion: { result in
             switch result {
             case .success(let pokemon):
                 self.getSinglePokemon(pokemon: pokemon.results)
@@ -30,7 +34,7 @@ class PokedexViewModel: PokedexViewModelable {
         let group = DispatchGroup()
         for index in 0...pokemon.count - 1 {
             group.enter()
-            repo?.getSinglePokemon(endpoint: pokemon[index].url, method: .GET, completion: { result in
+            repo?.getSinglePokemon(endpoint: pokemon[index].url, completion: { result in
                 switch result {
                 case .success(let singlePokemon):
                     self.singlePokemon.append(singlePokemon)

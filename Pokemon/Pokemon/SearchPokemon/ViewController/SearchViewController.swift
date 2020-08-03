@@ -15,16 +15,16 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadSearchList()
+        showLoadingIndicator()
         setUpNavigationBar()
     }
     
-    func loadSearchList() {
+    private func loadSearchList() {
         viewModel.view = self
-        viewModel.repo = Repository()
         viewModel.getAllPokemon()
     }
     
-    func setUpTableView() {
+    private func setUpTableView() {
         self.view.addSubview(self.tableView)
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -38,7 +38,7 @@ class SearchViewController: UIViewController {
         tableView.isHidden = true
     }
     
-    func setUpNavigationBar() {
+    private func setUpNavigationBar() {
         self.title = "search.title".localized(in: "GlobalStrings")
         self.styleNavigationBar(searchbar: true)
         self.navigationItem.searchController?.searchBar.delegate = self
@@ -76,6 +76,11 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 extension SearchViewController: SearchViewable {
+    func dataReady() {
+        self.setUpTableView()
+        self.tableView.reloadData()
+    }
+    
     func displayError(error: APIError) {
         self.showActionAlert(title: "error.title".localized(in: "GlobalStrings"),
         message: error.localizedDescription,
@@ -85,8 +90,9 @@ extension SearchViewController: SearchViewable {
     }
     
     func stopLoadingIndicator() {
-        setUpTableView()
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.removeLoadingIndicator()
+        }
     }
 }
 

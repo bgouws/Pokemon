@@ -14,29 +14,30 @@ class SingleViewViewController: UIViewController {
     var searching: Bool?
     private lazy var viewModel = SingleViewViewModel()
     
-    @IBOutlet weak var imgView: UIImageView!
-    @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblBaseExperience: UILabel!
-    @IBOutlet weak var lblHeight: UILabel!
-    @IBOutlet weak var lblWeight: UILabel!
+    @IBOutlet private weak var imgView: UIImageView!
+    @IBOutlet private weak var lblName: UILabel!
+    @IBOutlet private weak var lblBaseExperience: UILabel!
+    @IBOutlet private weak var lblHeight: UILabel!
+    @IBOutlet private weak var lblWeight: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        showLoadingIndicator()
         if self.searching != nil {
             getPokemon()
         } else {
+            removeLoadingIndicator()
             populateFields()
         }
     }
     
-    func getPokemon() {
+    private func getPokemon() {
         viewModel.view = self
-        viewModel.repo = Repository()
         guard let url = pokemonURL else { return }
         viewModel.getSinglePokemon(url: url)
     }
     
-    func populateFields() {
+    private func populateFields() {
         styleLabels()
         guard let singlePokemon = self.singlePokemon else {return}
         guard let url = URL(string: singlePokemon.sprites.front_default) else { return }
@@ -49,7 +50,7 @@ class SingleViewViewController: UIViewController {
     }
     
     
-    func styleLabels() {
+    private func styleLabels() {
         lblName.styleLabels()
         lblBaseExperience.styleLabels()
         lblHeight.styleLabels()
@@ -62,6 +63,7 @@ extension SingleViewViewController: SingleViewable {
         self.singlePokemon = pokemon
         DispatchQueue.main.async {
             self.populateFields()
+            self.removeLoadingIndicator()
         }
     }
     

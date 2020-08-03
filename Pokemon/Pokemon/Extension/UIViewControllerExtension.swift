@@ -8,6 +8,7 @@
 
 import UIKit
 
+var backgroundView: UIView?
 extension UIViewController {
     
     func showActionAlert(title: String, message: String, actions: [UIAlertAction], style: UIAlertController.Style) {
@@ -45,5 +46,20 @@ extension UIViewController {
             navigationItem.searchController?.obscuresBackgroundDuringPresentation = false
             navigationItem.hidesSearchBarWhenScrolling = false
         }
+    }
+    
+    func showLoadingIndicator() {
+        backgroundView = UIView(frame: self.view.bounds)
+        guard let backgroundView = backgroundView else { return }
+        backgroundView.backgroundColor = UIColor(named: "LoadingColor")
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.center = backgroundView.center
+        activityIndicator.startAnimating()
+        backgroundView.addSubview(activityIndicator)
+        self.view.addSubview(backgroundView)
+    }
+    func removeLoadingIndicator() {
+        backgroundView?.removeFromSuperview()
+        backgroundView = nil
     }
 }
