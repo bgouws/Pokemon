@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B60B01D824D45806001E057C /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60B01D724D45806001E057C /* UIImageViewExtension.swift */; };
+		B619E01324D7FA66008E3353 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B619E01224D7FA66008E3353 /* UILabelExtension.swift */; };
 		B629C39824D3F9D300ECAF18 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B629C39724D3F9D300ECAF18 /* UIViewControllerExtension.swift */; };
 		B629C39F24D4008900ECAF18 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B629C39E24D4008900ECAF18 /* SearchViewController.swift */; };
 		B629C3A324D4014800ECAF18 /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B629C3A224D4014800ECAF18 /* FavouritesViewController.swift */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		B60B01D724D45806001E057C /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		B619E01224D7FA66008E3353 /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		B629C39724D3F9D300ECAF18 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		B629C39E24D4008900ECAF18 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B629C3A224D4014800ECAF18 /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				B629C39724D3F9D300ECAF18 /* UIViewControllerExtension.swift */,
 				B60B01D724D45806001E057C /* UIImageViewExtension.swift */,
 				B6BF720224D6047400F1B918 /* UICollectionViewExtension.swift */,
+				B619E01224D7FA66008E3353 /* UILabelExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				B6D285C524D33D16004B68F4 /* Repositorable.swift in Sources */,
 				B6C91C7824D5B99E00B0424C /* SingleViewViewModel.swift in Sources */,
 				B63BF2C824D1331E003107F7 /* AppDelegate.swift in Sources */,
+				B619E01324D7FA66008E3353 /* UILabelExtension.swift in Sources */,
 				B6BF71FF24D5F86100F1B918 /* SingleViewModelable.swift in Sources */,
 				B6D285C924D33DD3004B68F4 /* PokedexViewModelable.swift in Sources */,
 				B6B1597A24D415F700A7112F /* SearchViewable.swift in Sources */,

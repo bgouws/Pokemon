@@ -10,13 +10,12 @@ import UIKit
 
 class SearchViewController: UIViewController {
     let viewModel = searchViewModel()
-    let tableView = UITableView()
+    private lazy var tableView = UITableView()
         
     override func viewDidLoad() {
         super.viewDidLoad()
         loadSearchList()
         setUpNavigationBar()
-        setUpTableView()
     }
     
     func loadSearchList() {
@@ -40,7 +39,7 @@ class SearchViewController: UIViewController {
     }
     
     func setUpNavigationBar() {
-        self.title = "Seach Pokemon"
+        self.title = "Search Pokemon"
         self.styleNavigationBar(searchbar: true)
         self.navigationItem.searchController?.searchBar.delegate = self
         self.navigationItem.hidesSearchBarWhenScrolling = false
@@ -86,6 +85,7 @@ extension SearchViewController: SearchViewable {
     }
     
     func stopLoadingIndicator() {
+        setUpTableView()
         self.tableView.reloadData()
     }
 }
