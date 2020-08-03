@@ -39,7 +39,7 @@ class SearchViewController: UIViewController {
     }
     
     func setUpNavigationBar() {
-        self.title = "Search Pokemon"
+        self.title = "search.title".localized(in: "GlobalStrings")
         self.styleNavigationBar(searchbar: true)
         self.navigationItem.searchController?.searchBar.delegate = self
         self.navigationItem.hidesSearchBarWhenScrolling = false
@@ -77,9 +77,9 @@ extension SearchViewController: UISearchBarDelegate {
 
 extension SearchViewController: SearchViewable {
     func displayError(error: APIError) {
-        self.showActionAlert(title: "Error",
+        self.showActionAlert(title: "error.title".localized(in: "GlobalStrings"),
         message: error.localizedDescription,
-        actions: [UIAlertAction(title: "Cancel",
+        actions: [UIAlertAction(title: "error.cancel".localized(in: "GlobalStrings"),
                                 style: .cancel)],
             style: .alert)
     }
@@ -96,8 +96,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else { return UITableViewCell() }
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: CellConstants.tableViewCell)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellConstants.tableViewCell) else { return UITableViewCell() }
         cell.textLabel?.text = viewModel.getPokemonName(index: indexPath.row)
         return cell
     }

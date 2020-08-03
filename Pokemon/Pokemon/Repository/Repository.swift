@@ -34,9 +34,4 @@ class Repository: Repositorable {
             }
         })
     }
-    
-    func getPokemon(endpoint: String, method: Method, completion: @escaping(Result<Pokemon, APIError>) -> Void) {
-        self.httpService = HttpService()
-       
-    }
 }
